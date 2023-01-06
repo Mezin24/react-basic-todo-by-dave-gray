@@ -14,9 +14,17 @@ export const PostSlice = createSlice({
     setSearch(state, action) {
       state.search = action.payload;
     },
+    handleDelete(state, action) {
+      state.posts = state.posts.filter(
+        (p) => p.id.toString() !== action.payload.toString()
+      );
+    },
+    addNewPost(state, action) {
+      state.posts = [action.payload, ...state.posts];
+    },
   },
 });
 
-export const { setSearch } = PostSlice.actions;
+export const { setSearch, handleDelete, addNewPost } = PostSlice.actions;
 
 export default PostSlice.reducer;
